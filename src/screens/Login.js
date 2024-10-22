@@ -9,7 +9,7 @@ const Login = () => {
    let navigate = useNavigate ()
   const handleSubmit = async(e) =>{
       e.preventDefault();
-      console.log(JSON.stringify({email:credenditals.email ,password:credenditals.password }))
+      
       const  response =  await fetch("http://localhost:5000/api/loginuser",{
         method: 'POST',
         headers: {
@@ -25,6 +25,8 @@ const Login = () => {
         alert("enter good ")
       }
       if(json.success){
+        localStorage.setItem("authToken" ,  json.authToken)
+        console.log(localStorage.getItem("authToken"))
         navigate("/")
       }
 
